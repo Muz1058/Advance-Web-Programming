@@ -6,16 +6,15 @@ function AboutSection() {
   ]
 
   return (
-    <section id="about" className="mx-auto max-w-6xl px-6 py-20">
-      <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-        <article className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <p className="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-sky-700">
-            About The Platform
-          </p>
-          <h2 className="max-w-xl text-4xl font-black text-slate-900 sm:text-5xl">
-            One event space for learning, networking, and launching new ideas.
-          </h2>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+    <section
+      id="about"
+      style={{ border: '1px solid black', margin: '12px', padding: '12px' }}
+    >
+      <div>
+        <article style={{ border: '1px solid black', padding: '12px' }}>
+          <p>About The Platform</p>
+          <h2>One event space for learning, networking, and launching new ideas.</h2>
+          <p>
             EventHub is a React-based event management website where users can
             explore upcoming experiences and register in seconds. The site is
             built around reusable components, dynamic JSX rendering, and a
@@ -23,15 +22,15 @@ function AboutSection() {
           </p>
         </article>
 
-        <article className="rounded-2xl border border-slate-200 bg-slate-50 p-8">
-          <p className="text-sm font-bold uppercase tracking-[0.3em] text-sky-700">
-            Why EventHub
-          </p>
-          <div className="mt-6 space-y-4">
+        <article
+          style={{ border: '1px solid black', marginTop: '12px', padding: '12px' }}
+        >
+          <p>Why EventHub</p>
+          <div>
             {highlights.map((highlight) => (
               <div
                 key={highlight}
-                className="rounded-xl border border-slate-200 bg-white p-4 text-slate-700"
+                style={{ border: '1px solid black', marginTop: '12px', padding: '12px' }}
               >
                 {highlight}
               </div>

@@ -28,26 +28,25 @@ function RegistrationForm({ events }) {
   }
 
   return (
-    <section id="register" className="mx-auto max-w-6xl px-6 py-20">
-      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <article className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <p className="text-sm font-bold uppercase tracking-[0.3em] text-sky-700">
-            Registration
-          </p>
-          <h2 className="mt-4 text-4xl font-black text-slate-900 sm:text-5xl">
-            Reserve your seat.
-          </h2>
-          <p className="mt-5 text-lg leading-8 text-slate-600">
+    <section
+      id="register"
+      style={{ border: '1px solid black', margin: '12px', padding: '12px' }}
+    >
+      <div>
+        <article style={{ border: '1px solid black', padding: '12px' }}>
+          <p>Registration</p>
+          <h2>Reserve your seat.</h2>
+          <p>
             This controlled form uses <code>useState</code>, one input handler,
             and submit handling to capture the user&apos;s registration details.
           </p>
 
           {submittedData ? (
-            <div className="mt-8 rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-slate-700">
-              <p className="text-sm font-bold uppercase tracking-[0.2em] text-emerald-700">
-                Latest Submission
-              </p>
-              <p className="mt-3 text-base">
+            <div
+              style={{ border: '1px solid black', marginTop: '12px', padding: '12px' }}
+            >
+              <p>Latest Submission</p>
+              <p>
                 {submittedData.name} registered with {submittedData.email} for{' '}
                 {submittedData.selectedEvent}.
               </p>
@@ -57,10 +56,10 @@ function RegistrationForm({ events }) {
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"
+          style={{ border: '1px solid black', marginTop: '12px', padding: '12px' }}
         >
-          <div className="grid gap-6">
-            <label className="grid gap-2 text-sm font-semibold text-slate-700">
+          <div>
+            <label>
               Full Name
               <input
                 type="text"
@@ -69,11 +68,16 @@ function RegistrationForm({ events }) {
                 onChange={handleChange}
                 placeholder="Enter your full name"
                 required
-                className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-700 focus:ring-2 focus:ring-sky-100"
+                style={{
+                  display: 'block',
+                  border: '1px solid black',
+                  marginTop: '8px',
+                  marginBottom: '12px',
+                }}
               />
             </label>
 
-            <label className="grid gap-2 text-sm font-semibold text-slate-700">
+            <label>
               Email Address
               <input
                 type="email"
@@ -82,18 +86,28 @@ function RegistrationForm({ events }) {
                 onChange={handleChange}
                 placeholder="Enter your email"
                 required
-                className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-700 focus:ring-2 focus:ring-sky-100"
+                style={{
+                  display: 'block',
+                  border: '1px solid black',
+                  marginTop: '8px',
+                  marginBottom: '12px',
+                }}
               />
             </label>
 
-            <label className="grid gap-2 text-sm font-semibold text-slate-700">
+            <label>
               Select Event
               <select
                 name="selectedEvent"
                 value={formData.selectedEvent}
                 onChange={handleChange}
                 required
-                className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-700 focus:ring-2 focus:ring-sky-100"
+                style={{
+                  display: 'block',
+                  border: '1px solid black',
+                  marginTop: '8px',
+                  marginBottom: '12px',
+                }}
               >
                 <option value="">Choose an event</option>
                 {events.map((event) => (
@@ -106,7 +120,7 @@ function RegistrationForm({ events }) {
 
             <button
               type="submit"
-              className="mt-2 rounded-xl bg-sky-700 px-5 py-3 text-base font-bold text-white transition hover:bg-sky-800"
+              style={{ border: '1px solid black' }}
             >
               Submit Registration
             </button>
