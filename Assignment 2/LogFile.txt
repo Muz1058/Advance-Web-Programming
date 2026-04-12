@@ -1,0 +1,6 @@
+Generated Web page Logo from OpenAI
+improve tailwindcss to NavBar component via Codex
+maintain log of all prompts that i will give you in this project in LogFile.txt
+Improve style of Footer.tsx and make sure Portal UI will remain consistent
+make sure UI of application is consistent and minimal
+fix rating badge from Card
