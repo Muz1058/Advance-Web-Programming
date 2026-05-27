@@ -1,13 +1,48 @@
-import { NavigationContainer } from "@react-navigation/native"; 
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import MainStack from "./navigation/MainStack";
+import AddStudentScreen from "./screens/AddStudentScreen";
+import HomeScreen from "./screens/HomeScreen";
+import ScrollInfoScreen from "./screens/ScrollInfoScreen";
+import StudentDetailScreen from "./screens/StudentDetailScreen";
 
-const App=()=>{
-  return(
+const Stack = createNativeStackNavigator();
+
+const App = () => {
+  return (
     <NavigationContainer>
-      <MainStack/>
-    </NavigationContainer>
-  )
-}
+      <Stack.Navigator initialRouteName="HomeScreen">
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{ title: "Students" }}
+        />
 
-export default App
+
+        <Stack.Screen
+          name="AddStudentScreen"
+          component={AddStudentScreen}
+          options={{ title: "Add Student" }}
+        />
+        
+        <Stack.Screen
+          name="StudentDetailScreen"
+          component={StudentDetailScreen}
+          options={{ title: "Student Detail" }}
+        />
+        <Stack.Screen
+          name="ScrollInfoScreen"
+          component={ScrollInfoScreen}
+          options={{ title: "Scroll Demo" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+
+
+};
+
+
+
+
+export default App;
