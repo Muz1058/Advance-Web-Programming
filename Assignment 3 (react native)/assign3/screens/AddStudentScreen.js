@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react"
+import { useState } from "react"
 import {Alert,KeyboardAvoidingView,Platform,ScrollView,StyleSheet,Switch,Text,TextInput,TouchableOpacity,View,} from "react-native"
 
 const AddStudentScreen = ({ navigation }) => {
@@ -30,6 +30,11 @@ const AddStudentScreen = ({ navigation }) => {
         name: isActive ? "Active Student Group" : "Inactive Student Group",
       },
       isActive,
+    }
+
+    if (navigation.popTo) {
+      navigation.popTo("HomeScreen", { newStudent })
+      return
     }
 
     navigation.navigate("HomeScreen", { newStudent })

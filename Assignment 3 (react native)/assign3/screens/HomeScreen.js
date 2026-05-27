@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from "react"
-import {ActivityIndicator,ScrollView,FlatList,StyleSheet,Text,TouchableOpacity,View,} from "react-native"
+import { useCallback, useEffect, useRef, useState } from "react"
+import { useFocusEffect } from "@react-navigation/native"
+import {ActivityIndicator,FlatList,StyleSheet,Text,TouchableOpacity,View,} from "react-native"
 import axios from "axios"
 
 const STUDENTS_URL = "https://jsonplaceholder.typicode.com/users"
@@ -9,6 +10,7 @@ const HomeScreen = ({ navigation, route }) => {
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
   const [error, setError] = useState("")
+  const handledStudentIds = useRef(new Set())
 
   const fetchStudents = useCallback(async (showFullLoader = false) => {
     try {
@@ -17,7 +19,13 @@ const HomeScreen = ({ navigation, route }) => {
       }
       setError("")
       const response = await axios.get(STUDENTS_URL)
-      setStudents(response.data)
+      setStudents((prevStudents) => {
+        const addedStudents = prevStudents.filter((student) =>
+          handledStudentIds.current.has(student.id)
+        )
+
+        return [...addedStudents, ...response.data]
+      })
     } 
     catch (requestError) {
       setError("Unable to load students Please try again.")
@@ -32,14 +40,17 @@ const HomeScreen = ({ navigation, route }) => {
     fetchStudents(true)
   }, [fetchStudents])
 
-  useEffect(() => {
-    const newStudent = route.params?.newStudent
+  useFocusEffect(
+    useCallback(() => {
+      const newStudent = route.params?.newStudent
 
-    if (newStudent) {
-      setStudents((prevStudents) => [newStudent, ...prevStudents])
-      navigation.setParams({ newStudent: undefined })
-    }
-  }, [navigation, route.params?.newStudent])
+      if (newStudent && !handledStudentIds.current.has(newStudent.id)) {
+        handledStudentIds.current.add(newStudent.id)
+        setStudents((prevStudents) => [newStudent, ...prevStudents])
+        navigation.setParams({ newStudent: undefined })
+      }
+    }, [navigation, route.params?.newStudent])
+  )
 
   const handleRefresh = () => {
     setRefreshing(true)
